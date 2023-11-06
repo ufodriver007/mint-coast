@@ -5,7 +5,7 @@ from .models import Category, MModel, Album, Ticket, Ban, Tag, News
 from datetime import datetime
 from django.utils.safestring import mark_safe
 
-admin.site.register(Category)
+
 admin.site.register(Album)
 admin.site.register(Tag)
 
@@ -30,3 +30,7 @@ class TicketAdmin(admin.ModelAdmin):
     search_fields = ["title", "description"]
     list_filter = ("posted_by", "date")
 
+
+@admin.register(Category)
+class TicketAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "path")
