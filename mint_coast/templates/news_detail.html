@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="top center">
+    <h1>Новости</h1>
+</div>
+    <div class="news_item">
+        <h2>{{ news.title }}</h2>
+        <img src="/media/{{ news.image }}">
+        <p><b>{{ news.description }}</b></p>
+        <p class="date">{{ news.date }}</p>
+    </div>
+{% endblock %}

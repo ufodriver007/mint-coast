@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="center">
+    <div class="top">
+        <h3>Здравствуйте, {{ request.user.username }}</h3>
+        <div class="profile-item">
+            <a href="/add_album/">Создать альбом</a>
+            <a href="/add_model">Добавить модель</a>
+            <a href="/user_profile/edit">Изменить данные профиля</a>
+            <a href="/accounts/password/change/">Изменить пароль</a>
+            <a href="/create_ticket">Написать в тех. поддержку</a>
+            {% if tickets %}
+                <a href="/closed_tickets">Закрытые тикеты</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if not email_confirmed %}
+         <div class="email_confirm">
+             <h4>Email не подтверждён. Функции аккаунта ограничены. На Вашу почту выслано письмо с инструкциями.</h4>
+             <a href="/accounts/email/">Управление E-mail адресами</a>
+         </div>
+    {% endif %}
+</div>
+{% if albums_and_previews %}
+<div class="center">
+    <h3>Мои альбомы</h3>
+    <div class="my_models">
+    {% for album, preview in albums_and_previews.items %}
+            <figure class="album_item">
+                <a href="/album/{{ album.id }}"><img src="/media/{{ preview }}"></a>
+                <figcaption class="album_name">{{ album.name }}</figcaption>
+            </figure>
+    {% endfor %}
+    </div>
+</div>
+{% endif %}
+    <div class="center">
+        <h3>Мои модели</h3>
+    </div>
+<div class="my_models">
+
+    {% for model in models %}
+    {% if model.is_hidden == False %}
+    <div class="models_item">
+        <a href="/model/{{ model.id }}"><img src="/media/{{ model.photo00 }}" alt="{{ model.name }}" width=100% height=100%></a>
+        <div class="middle">
+            <div class="text"><a href="/model/{{ model.id }}">{{ model.name }}</a></div>
+        </div>
+        <div class="middle_top">
+            <div class="text"><a href="/model/edit/{{ model.id }}">Редактировать</a></div>
+        </div>
+    </div>
+    {% else %}
+    <div class="models_item center">
+        <p>{{ model.name }}</p>
+        <p>не прошел(-ла) модерацию</p>
+        <form action="/model/delete/" method="post" class="del-form">
+            {% csrf_token %}
+            <input type="hidden" name="model_id" value="{{ model.id }}">
+            <button id="submitBtn" type="submit">УДАЛИТЬ модель</button>
+        </form>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
+{% endblock %}

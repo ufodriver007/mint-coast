@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% load static recaptcha3 %}
+{% recaptcha_init %}
+{% recaptcha_ready action_name='login' %}
+<div class="center">
+    <div class="top">
+        <h3>Регистрация</h3>
+    </div>
+</div>
+<div class="reg_info">
+    <form action="{% url 'account_signup' %}" method="post" class="reg-form">
+        {% if message %}
+        <ul class="messages">
+            <li>{{ message }}</li>
+        </ul>
+        {% endif %}
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button><br>
+    </form>
+        <div class="center" style="margin-bottom: 50px;">
+        {% load socialaccount %}
+
+        {% if request.user.is_authenicated %}
+            <a href="{% url 'account_logout' %}">Выйти</a>
+        {% else %}
+            <h4>Зарегистрироваться с помощью:</h4>
+            <div class="social_providers">
+                <form method="post" action="{% provider_login_url 'github' %}">
+                    {% csrf_token %}
+                    <button type="submit" id="image-button-git">
+                        <img src="{% static 'img/github_logo.png' %}" class="pull-left">
+                        GitHub
+                    </button>
+                </form>
+                <form method="post" action="{% provider_login_url 'vk' %}">
+                    {% csrf_token %}
+                    <button type="submit" id="image-button-vk">
+                        <img src="{% static 'img/vk_logo.png' %}" class="pull-left">
+                        VK
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

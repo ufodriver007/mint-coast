@@ -1,0 +1,216 @@
+[01-09-2023 09:57:20:404][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: Uninitialized
+
+[01-09-2023 09:57:20:404][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: Unknown, to: Uninitialized
+
+[01-09-2023 09:57:20:895][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: InitMenu
+
+[01-09-2023 09:57:20:895][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: StartLoading
+
+[01-09-2023 09:57:20:895][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: Init
+
+[01-09-2023 09:57:21:129][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: LoadModule
+
+[01-09-2023 09:57:21:129][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: LoadMenu
+
+[01-09-2023 09:57:21:129][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: StopLoading
+
+[01-09-2023 09:57:21:129][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: Menu
+
+[01-09-2023 09:57:21:288][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: Unknown, to: InitMenu
+
+[01-09-2023 09:57:21:807][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: InitMenu, to: StartLoading
+
+[01-09-2023 09:57:26:377][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: StartLoading, to: Init
+
+[01-09-2023 09:57:28:621][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: Init, to: LoadModule
+
+[01-09-2023 09:57:29:186][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Framework\Code\GameNet\PortMapperUPnP.cpp 115 net::PortMapperUPnP::Discover]: [NET] Discovery finished... no usable UPnP enabled routers found
+[01-09-2023 09:57:46:264][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: LoadModule, to: LoadMenu
+
+[01-09-2023 09:58:23:770][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: LoadMenu, to: StopLoading
+
+[01-09-2023 09:58:23:787][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: StopLoading, to: Menu
+
+[01-09-2023 09:58:30:069][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 96 ecl::GameStateMachine::SetTargetStateAfterFade]: ecl::GameStateQueued: StartLoading after fade: FadeIn
+
+[01-09-2023 09:58:30:069][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: StartServer
+
+[01-09-2023 09:58:30:069][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: Idle
+
+[01-09-2023 09:58:30:570][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: Menu, to: StartLoading
+
+[01-09-2023 09:58:30:603][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: StartLoading, to: StartServer
+
+[01-09-2023 09:58:30:671][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LobbyManager.cpp 641 esv::LobbyManager::SetLobbystatus]: [LOBBY] STATUS CHANGED - from: Uninitialized to: Creating
+
+[01-09-2023 09:58:30:804][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: Init
+
+[01-09-2023 09:58:30:804][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: Uninitialized, to: Init
+
+[01-09-2023 09:58:30:839][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LobbyManager.cpp 641 esv::LobbyManager::SetLobbystatus]: [LOBBY] STATUS CHANGED - from: Creating to: Created
+
+[01-09-2023 09:58:30:850][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Framework\Code\GameNet\AbstractPeer.cpp 2149 net::AbstractPeer::BindSocket]: Binding socket to port 23253 ... 
+[01-09-2023 09:58:30:851][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 324 esv::LoadProtocol::LoadSavegame]: * ServerLoadProtocol: Load savegame request: QuickSave_11
+
+[01-09-2023 09:58:30:872][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: UnloadLevel
+
+[01-09-2023 09:58:30:872][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: UnloadSession
+
+[01-09-2023 09:58:30:872][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: UnloadModule
+
+[01-09-2023 09:58:30:877][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: LoadModule
+
+[01-09-2023 09:58:30:877][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1196 esv::LoadProtocol::SendLoadModuleMessage]: * ServerLoadProtocol: Sending load module message
+
+[01-09-2023 09:58:30:886][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: LoadSession
+
+[01-09-2023 09:58:30:886][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: Init, to: UnloadLevel
+
+[01-09-2023 09:58:30:887][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: Unknown, to: UnloadSession
+
+[01-09-2023 09:58:30:887][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: Unknown, to: UnloadModule
+
+[01-09-2023 09:58:30:887][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: Unknown, to: LoadModule
+
+[01-09-2023 09:58:30:891][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: InitNetwork
+
+[01-09-2023 09:58:30:891][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: InitConnection
+
+[01-09-2023 09:58:30:891][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: StartServer, to: Idle
+
+[01-09-2023 09:58:30:907][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: Idle, to: InitNetwork
+
+[01-09-2023 09:58:30:924][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: InitNetwork, to: InitConnection
+
+[01-09-2023 09:58:30:925][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Framework\Code\GameNet\AbstractPeer.cpp 910 net::AbstractPeer::HandleConnectionRequestAccepted]: [NET]  <1040038590037875798> Connecting to local server ... SUCCESS [MTU: 0]
+[01-09-2023 09:58:31:032][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Framework\Code\GameNet\AbstractPeer.cpp 872 net::AbstractPeer::HandleIncomingConnection]: [NET] 172.17.0.1:23253 <8544675460834906339> Incoming connection from local client [MTU: 0]
+[01-09-2023 09:58:31:032][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameServer.cpp 295 esv::GameServer::OnNewIncomingConnection]: New incoming connection with peer ID 1
+[01-09-2023 09:58:31:065][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1179 esv::LoadProtocol::SendLoadStartedMessage]: * ServerLoadProtocol: Sending load started message
+
+[01-09-2023 09:58:31:065][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1196 esv::LoadProtocol::SendLoadModuleMessage]: * ServerLoadProtocol: Sending load module message
+
+[01-09-2023 09:58:31:091][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\LoadProtocol.cpp 85 ecl::LoadProtocol::ProcessMsg]: * ClientLoadProtocol peer0: Received Load Start
+
+[01-09-2023 09:58:31:101][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 96 ecl::GameStateMachine::SetTargetStateAfterFade]: ecl::GameStateQueued: StartLoading after fade: Unknown
+
+[01-09-2023 09:58:31:101][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: Idle
+
+[01-09-2023 09:58:31:101][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\LoadProtocol.cpp 199 ecl::LoadProtocol::ProcessMsg]: * ClientLoadProtocol peer0: Received Module Load
+
+[01-09-2023 09:58:31:101][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: UnloadLevel
+
+[01-09-2023 09:58:31:101][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: UnloadSession
+
+[01-09-2023 09:58:31:101][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: Idle
+
+[01-09-2023 09:58:31:110][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: UnloadModule
+
+[01-09-2023 09:58:31:113][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: LoadModule
+
+[01-09-2023 09:58:31:113][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: InitConnection, to: StartLoading
+
+[01-09-2023 09:58:31:118][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: StartLoading, to: Idle
+
+[01-09-2023 09:58:31:135][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: Idle, to: UnloadLevel
+
+[01-09-2023 09:58:31:235][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: UnloadLevel, to: UnloadSession
+
+[01-09-2023 09:58:31:235][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: Unknown, to: Idle
+
+[01-09-2023 09:58:31:251][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: Idle, to: UnloadModule
+
+[01-09-2023 09:58:31:686][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: UnloadModule, to: LoadModule
+
+[01-09-2023 09:58:46:558][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 578 esv::LoadProtocol::ProcessMsg]: * ServerLoadProtocol: Received module loaded (Divinity: Original Sin 2) from 1 
+
+[01-09-2023 09:58:46:558][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 602 esv::LoadProtocol::ProcessMsg]: * ServerLoadProtocol: Queueing module loaded event for peer 1
+
+[01-09-2023 09:58:55:380][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1375 esv::LoadProtocol::HandleModuleLoaded]: * ServerLoadProtocol: Executing module loaded event for peer 1
+
+[01-09-2023 09:58:55:380][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1233 esv::LoadProtocol::SendLoadSessionMessage]: * ServerLoadProtocol: Sending load session message
+
+[01-09-2023 09:58:55:384][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\LoadProtocol.cpp 164 ecl::LoadProtocol::ProcessMsg]: * ClientLoadProtocol peer0: Received Session Load
+
+[01-09-2023 09:58:55:384][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: LoadSession
+
+[01-09-2023 09:58:55:384][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: LoadModule, to: LoadSession
+
+[01-09-2023 09:58:55:422][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: LoadModule, to: LoadSession
+
+[01-09-2023 09:58:55:671][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: LoadLevel
+
+[01-09-2023 09:58:55:671][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1246 esv::LoadProtocol::SendLoadLevelMessage]: * ServerLoadProtocol: Sending level level message
+
+[01-09-2023 09:58:56:422][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\LoadProtocol.cpp 140 ecl::LoadProtocol::ProcessMsg]: * ClientLoadProtocol peer0: Received Level Load
+
+[01-09-2023 09:58:56:422][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: LoadLevel
+
+[01-09-2023 09:58:56:422][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: LoadSession, to: LoadLevel
+
+[01-09-2023 09:59:09:862][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 487 esv::LoadProtocol::ProcessMsg]: * ServerLoadProtocol: Received session loaded (acf3c1b9-921d-49dd-aa80-96f0e688cd09) from 1 
+
+[01-09-2023 09:59:09:862][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1518 esv::LoadProtocol::HandleSessionLoaded]: * ServerLoadProtocol: Executing session loaded event for peer 1
+
+[01-09-2023 09:59:09:866][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: LoadSession, to: LoadLevel
+
+[01-09-2023 09:59:14:884][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 466 esv::LoadProtocol::ProcessMsg]: * ServerLoadProtocol: Received level loaded (RC_Main) from 1 
+
+[01-09-2023 09:59:14:884][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1529 esv::LoadProtocol::HandleLevelLoaded]: * ServerLoadProtocol: Executing level loaded event for peer 1
+
+[01-09-2023 09:59:14:887][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1260 esv::LoadProtocol::SendInstansiateSwapMessage]: * ServerLoadProtocol: Sending level instantiate and swap message
+
+[01-09-2023 09:59:15:263][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\LoadProtocol.cpp 338 ecl::LoadProtocol::ProcessMsg]: * ClientLoadProtocol peer0: Received Instantiate Swap
+
+[01-09-2023 09:59:15:263][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: SwapLevel
+
+[01-09-2023 09:59:15:263][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: StopLoading
+
+[01-09-2023 09:59:15:263][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: PrepareRunning
+
+[01-09-2023 09:59:15:263][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: LoadLevel, to: SwapLevel
+
+[01-09-2023 09:59:15:665][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 616 esv::LoadProtocol::ProcessMsg]: * ServerLoadProtocol: 1 / 0 ready -- received swap ready from: 1 
+
+[01-09-2023 09:59:15:665][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1600 esv::LoadProtocol::CheckSwapServer]: * ServerLoadProtocol: Swapping level
+
+[01-09-2023 09:59:15:665][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: Sync
+
+[01-09-2023 09:59:15:675][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: LoadLevel, to: Sync
+
+[01-09-2023 09:59:15:942][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 982 esv::LoadProtocol::DoState]: * ServerLoadProtocol: Swap Completed!
+
+[01-09-2023 09:59:15:942][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1281 esv::LoadProtocol::SendSwapCompleteMessage]: * ServerLoadProtocol: Sending swap complete message
+
+[01-09-2023 09:59:15:957][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\LoadProtocol.cpp 350 ecl::LoadProtocol::ProcessMsg]: * ClientLoadProtocol peer0: Received Swap Complete
+
+[01-09-2023 09:59:32:349][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: SwapLevel, to: StopLoading
+
+[01-09-2023 09:59:32:899][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: StopLoading, to: PrepareRunning
+
+[01-09-2023 09:59:37:916][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\LoadProtocol.cpp 1554 esv::LoadProtocol::CheckLevelStart]: * ServerLoadProtocol: Level Starting
+
+[01-09-2023 09:59:37:917][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: Running
+
+[01-09-2023 09:59:37:917][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: Sync, to: Running
+
+[01-09-2023 09:59:38:603][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\LoadProtocol.cpp 388 ecl::LoadProtocol::ProcessMsg]: * ClientLoadProtocol peer0: Received Level Start
+
+[01-09-2023 09:59:38:603][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 96 ecl::GameStateMachine::SetTargetStateAfterFade]: ecl::GameStateQueued: Running after fade: FadeIn
+
+[01-09-2023 09:59:39:605][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: PrepareRunning, to: Running
+
+[01-09-2023 09:59:39:614][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\ChatManager.cpp 385 ecl::ChatManager::DisconnectFromGlobalChat]: Disconnecting from the global chat server
+[01-09-2023 09:59:56:718][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 67 esv::GameStateMachine::SetTargetState]: esv::GameStateQueued: Paused
+
+[01-09-2023 09:59:56:718][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameStateMachine.cpp 85 esv::GameStateMachine::Update]: SERVER STATE SWAP - from: Running, to: Paused
+
+[01-09-2023 09:59:56:729][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 107 ecl::GameStateMachine::SetTargetState]: ecl::GameStateQueued: Paused
+
+[01-09-2023 09:59:56:730][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\GameStateMachine.cpp 177 ecl::GameStateMachine::Update]: CLIENT STATE SWAP - from: Running, to: Paused
+
+[01-09-2023 09:59:59:176][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Framework\Code\GameNet\AbstractPeer.cpp 774 net::AbstractPeer::Disconnect]: [NET] 172.17.0.1:23253 <8544675460834906339> Disconnecting from local client ..
+[01-09-2023 09:59:59:176][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Framework\Code\GameNet\AbstractPeer.cpp 974 net::AbstractPeer::HandleConnectionLost]: [NET] 172.17.0.1:23253 <8544675460834906339> Connection to local client closed
+[01-09-2023 09:59:59:185][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCServer\Server\GameServer.cpp 467 esv::GameServer::OnConnectionLost]: Connection to peer 1 closed
+[01-09-2023 09:59:59:222][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Framework\Code\GameNet\AbstractPeer.cpp 774 net::AbstractPeer::Disconnect]: [NET]  <1040038590037875798> Disconnecting from local server ..
+[01-09-2023 09:59:59:222][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Framework\Code\GameNet\AbstractPeer.cpp 974 net::AbstractPeer::HandleConnectionLost]: [NET]  <1040038590037875798> Connection to local server closed
+[01-09-2023 09:59:59:222][D:\Jenkins\workspace\Repo\FW3.5\RC\Stable\LSProjects\Apps\DOS2\Code\EoCClient\Client\ChatManager.cpp 385 ecl::ChatManager::DisconnectFromGlobalChat]: Disconnecting from the global chat server

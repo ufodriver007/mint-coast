@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="center">
+    <div class="top">
+        <h3>Подтверждение Email</h3>
+    </div>
+    <div>
+        {% if not confirmed %}
+        {% if email_code %}
+        <form method="post" id="send_mail_form">
+            {% csrf_token %}
+            <input type="hidden" value="{{ email_code }}" name="email_code" required>
+            <button type="submit">Прислать код мне на почту</button>
+        </form>
+        {% else %}
+            {% if timeout %}
+            <h3 style="color: red;">Нельзя слать письма слишком часто!</h3>
+            {% endif %}
+        <form method="post" id="send_code_form">
+            {% csrf_token %}
+            <input type="text" placeholder="Введите код, пришедший на Email" name="code_confirm" required>
+            <button type="submit">Подтвердить</button>
+        </form>
+        {% endif %}
+
+        {% elif confirmed == 'True' %}
+        <h3>Email успешно подтверждён.</h3>
+        <a href="/user_profile/">Назад в профиль</a>
+
+        {% elif confirmed == 'False' %}
+        <h3>Неверный код подтверждения. Попробуйте через минуту.</h3>
+        <a href="/user_profile/">Назад в профиль</a>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

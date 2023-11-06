@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% load static recaptcha3 %}
+{% recaptcha_init %}
+{% recaptcha_ready action_name='login' %}
+<div class="center">
+    <div class="top">
+        <h3>Вход на сайт</h3>
+    </div>
+</div>
+<div class="reg_info" id="login">
+    <form action="{% url 'account_login' %}" method="post" class="login-form">
+        {% if message %}
+        <ul class="messages">
+            <li>{{ message }}</li>
+        </ul>
+        {% endif %}
+        {% csrf_token %}
+        <label for="email">Email</label><br>
+        <input type="email" name="email"><br>
+        <label for="password">Пароль</label><br>
+        <input type="password" name="password"><br>
+
+        <div class="captcha">
+            <p>Captcha: 1234567</p>
+        </div>
+        <div style="margin: 20px;"><a href="/accounts/password/reset/">Забыли пароль?</a></div>
+        <button type="submit">Войти</button><br><br>
+        </form>
+    <div class="center">
+        {% load socialaccount %}
+
+        {% if request.user.is_authenicated %}
+            <a href="{% url 'account_logout' %}">Выйти</a>
+        {% else %}
+            <h4>Войти с помощью:</h4>
+            <div class="social_providers">
+                <form method="post" action="{% provider_login_url 'github' %}">
+                    {% csrf_token %}
+                    <button type="submit" id="image-button-git">
+                        <img src="{% static 'img/github_logo.png' %}" class="pull-left">
+                        GitHub
+                    </button>
+                </form>
+                <form method="post" action="{% provider_login_url 'vk' %}">
+                    {% csrf_token %}
+                    <button type="submit" id="image-button-vk">
+                        <img src="{% static 'img/vk_logo.png' %}" class="pull-left">
+                        VK
+                    </button>
+                </form>
+                <form method="post" action="{% provider_login_url 'google' %}">
+                    {% csrf_token %}
+                    <button type="submit" id="image-button-google">
+                        <img src="{% static 'img/google_logo.png' %}" class="pull-left">
+                        Google
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

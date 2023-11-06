@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="top">
+    <div class="center">
+        <h3>Изменение модели</h3>
+    </div>
+</div>
+
+<div class="center">
+    {% if success == 'success' %}
+    <div><h3>Модель успешно отредактирована</h3></div>
+    {% elif success == 'false' %}
+    <div><h3>Не удалось отредактировать модель</h3></div>
+    {% else %}
+    <div class="reg_info">
+        <form action="" method="post" class="login-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table border="1">
+                {{ form }}
+            </table>
+            <input type="hidden" name="model_id" value="{{ model.id }}">
+            <button type="submit">Сохранить модель</button>
+        </form>
+
+    </div>
+    <div class="reg_info">
+        <form action="/model/delete/" method="post" class="del-form">
+            {% csrf_token %}
+            <input type="hidden" name="model_id" value="{{ model.id }}">
+            <button id="submitBtn" type="submit">УДАЛИТЬ модель</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+<script>
+  document.getElementById('submitBtn').addEventListener('click', function(event) {
+    event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+    // Показываем всплывающее окно подтверждения
+    if (confirm('Вы ТОЧНО уверены, что хотите удалить свою модель?')) {
+      // Если пользователь нажал "ОК", находим элемент с классом del-form и делаем submit
+      document.querySelector('.del-form').submit();
+    }
+  });
+</script>
+{% endblock %}

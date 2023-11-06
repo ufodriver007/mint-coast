@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static recaptcha3 %}
+{% recaptcha_init %}
+{% recaptcha_ready action_name='homepage' %}
+<div class="top_block">
+    <div class="center">
+        <h3>Добавление новой модели</h3>
+    </div>
+</div>
+
+<div class="center">
+    {% if email_confirmed == 'False' %}
+        <div><h3>Чтобы добавлять модели, нужно иметь аккаунт с подтверждённым email</h3></div>
+        <a href="/user_profile/confirm_email/">Подтвердить почту</a>
+    {% else %}
+    {% if success == 'success' %}
+    <div><h3>Модель успешно добавлена.</h3></div>
+    {% elif success == 'false' %}
+    <div><h3>Не удалось добавить модель</h3></div>
+    {% else %}
+    <div class="reg_info">
+        <form action="" method="post" class="login-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table border="1">
+                {{ form }}
+            </table>
+            <input type="hidden" name="user" value="{{ u_id }}">
+            <button type="submit">Добавить модель</button>
+        </form>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

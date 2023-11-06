@@ -1,0 +1,47 @@
+{% block header %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <meta charset="UTF-8">
+    <title>Mint Coast</title>
+</head>
+<body>
+<header class="header">
+    <a href="/" id="homeref" class="active">Главная</a>
+    <div class="dropdown">
+        <a href="/search/?category=11&query=" id="categoryref">Модели</a>
+        <div class="dropdown-content">
+            {% for category in categories %}
+                <a href="/search?category={{ category.id }}&query={{ query }}">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <form action="/search">
+        <input type="text" id="searchtab" class="search_input" placeholder="Поиск моделей или людей..." name="query" value="{{ query }}">
+        <input type="hidden" value="{{ category }}" name="category">
+        <input type="hidden" value="" name="tags">
+    </form>
+    {% if user.is_authenticated %}
+        <a href="/accounts/profile" id="loginbutton">Профиль</a>
+        <a href="/logout" id="regbutton">Выйти</a>
+    {% else %}
+        <a href="/accounts/login" id="loginbutton">Войти</a>
+        <a href="/accounts/signup" id="regbutton">Регистрация</a>
+    {% endif %}
+</header>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+<footer class="footer">
+    <div>
+        Mint Coast. 2023. All right reserved.
+    </div>
+</footer>
+</body>
+</html>
+{% endblock %}

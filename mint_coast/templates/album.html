@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="center top">
+    <h3>{{ album.name }}</h3>
+</div>
+
+<div class="my_models">
+
+    {% for model in models %}
+    {% if model.is_hidden == False %}
+    <div class="models_item">
+        <a href="/model/{{ model.id }}"><img src="/media/{{ model.photo00 }}" alt="{{ model.name }}" width=100% height=100%></a>
+        <div class="middle">
+            <div class="text"><a href="/model/{{ model.id }}">{{ model.name }}</a></div>
+        </div>
+        {% if model.user == request.user %}
+        <div class="middle_top">
+            <div class="text"><a href="/model/edit/{{ model.id }}">Редактировать</a></div>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% if album.user == request.user %}
+<div class="center top">
+    <a href="/album/edit/{{ album.id }}/">Редактировать альбом</a>
+</div>
+<div class="center top">
+    <form action="/album/delete/" method="post" class="del-form">
+        {% csrf_token %}
+        <input type="hidden" name="a_id" value="{{ album.id }}">
+        <input id="submitBtn" type="submit" value="УДАЛИТЬ альбом">
+    </form>
+</div>
+<script>
+  document.getElementById('submitBtn').addEventListener('click', function(event) {
+    event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+    // Показываем всплывающее окно подтверждения
+    if (confirm('Вы ТОЧНО уверены, что хотите удалить свой альбом?')) {
+      // Если пользователь нажал "ОК", находим элемент с классом del-form и делаем submit
+      document.querySelector('.del-form').submit();
+    }
+  });
+</script>
+{% endif %}
+{% endblock %}

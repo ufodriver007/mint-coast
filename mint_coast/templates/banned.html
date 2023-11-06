@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% load static %}
+<div class="center" style="margin-top: 200px;">
+    <h3 style="color: red;">Ваш аккаунт был забанен.</h3>
+    <h5>Причина: {{ reason }}</h5>
+    <h5>Дата окончания: {{ end_date }}</h5>
+</div>
+{% endblock %}

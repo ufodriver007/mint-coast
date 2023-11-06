@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="top">
+    <div class="center">
+        <h3>Ваши закрытые тикеты</h3>
+    </div>
+</div>
+<div class="center">
+    {% for ticket in tickets %}
+    <div class="ticket">
+      <h4>{{ ticket.theme }}</h4>
+      <p>{{ ticket.body }}</p>
+      <h3>Ответ тех.поддержки:</h3>
+      <p>{{ ticket.answer }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

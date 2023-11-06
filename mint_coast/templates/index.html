@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% load static %}
+<div class="top_block">
+    <div class="top_left_block">
+        <div class="Logo">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" width=30% height=30%>
+        </div>
+        <div class="description"><p>Здесь можно выложить свои модели для просмотра или скачивания. Продать или же создать портфолио.</p></div>
+    </div>
+    <div class="news">
+        <div class="news_label"><h3>Новости сайта</h3></div>
+        {% for n in news %}
+        <div class="news_article">
+            <h4>{{ n.title }}</h4>
+            <p><a href="/news/{{ n.id }}">{{ n.short_description }}</a></p>
+        </div>
+        {% endfor %}
+        <div class="center">
+            <p><a href="/news/">Все новости>>></a></p>
+        </div>
+    </div>
+</div>
+<div>
+    <div>
+        <h3 class="categories_label">Категории</h3>
+    </div>
+    <div class="categories">
+        {% for category in categories %}
+            <a href="/search?query=&category={{ category.id }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+</div>
+<div class="last_models">
+
+    {% for model in models %}
+    {% if model.is_hidden == False %}
+        <div class="models_item">
+            <img src="../media/{{ model.photo00 }}" alt="{{ model.name }}" width=100% height=100%>
+            <div class="middle">
+                <div class="text"><a href="/model/{{ model.id }}">{{ model.name }}</a></div>
+            </div>
+        </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
+{% endblock %}

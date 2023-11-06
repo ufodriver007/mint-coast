@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+{% if model.is_hidden == False %}
+<div class="center">
+    <div class="top">
+        <h3>Информация о модели</h3>
+    </div>
+    <div class="model">
+        <div class="model_photo">
+            <img src="../media/{{ model.photo00 }}" alt="Model image" id="main_img">
+        </div>
+        <div class="model_desc">
+            <h3>{{ model.name }}</h3>
+            <p>Количество полигонов: {{ model.polygons }}</p>
+            <p>Стиль: {{ model.style }}</p>
+            <p>Сделано в: {{ model.created_with }}</p>
+            {% if model.is_unwrapped %}
+                <p>Развёртка: Есть</p>
+            {% else %}
+                <p>Развёртка: Нет</p>
+            {% endif %}
+            {% if model.textures %}
+                <p>Тексуры: Есть</p>
+            {% else %}
+                <p>Тексуры: Нет</p>
+            {% endif %}
+            {% if model.is_pbr %}
+                <p>PBR: Да</p>
+            {% else %}
+                <p>PBR: Нет</p>
+            {% endif %}
+            {% if model.is_scan %}
+                <p>Скан: Да</p>
+            {% else %}
+                <p>Скан: Нет</p>
+            {% endif %}
+            {% if model.is_print %}
+                <p>Для 3d печати: Да</p>
+            {% else %}
+                <p>Для 3d печати: Нет</p>
+            {% endif %}
+            <p>Рендер: {{ model.rendered_with }}</p>
+            <p>Тип файлов: {{ model.format }}</p>
+            {% if model.animate %}
+                <p>Анимация: Есть</p>
+            {% else %}
+                <p>Анимация: Нет</p>
+            {% endif %}
+            {% if model.tags %}
+                <p>Тэги: {% for tag in tags %}#{{ tag }} {% endfor %}</p>
+            {% endif %}
+            <div class="buy_it">
+                <div class="price">
+                    <p><b>{{ model.price }} руб</b></p>
+                </div>
+                <div class="buy">
+                    <a href="#">Купить</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel">
+            <img src="../media/{{ model.photo00 }}" alt="carousel_image" class="c_item" id="act">
+            {% for photo in photos %}
+            <img src="../media/{{ photo }}" alt="carousel_image" class="c_item">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% if model.video %}
+<div class="center">
+    <video width="800" height="600" controls>
+        <source src="../media/{{ model.video }}" type="video/mp4">
+    </video>
+</div>
+{% endif %}
+{% if model.mview %}
+<div class="mview">
+    <script src="https://cdna.artstation.com/marmoset/marmoset-d3f745560e47d383adc4f6a322092030.js"></script>
+    <script>var opts = { width: 800, height: 600, autoStart: false}
+        marmoset.showFrameTime = false;
+        marmoset.hostURL = "https://www.mint-coast.ru";
+        marmoset.dataLocale = "https://viewer.marmoset.co/main/data/";
+        var currentViewer = marmoset.embed( "../media/{{ model.mview }}", opts );
+
+        if (window && document && currentViewer.resize) {
+          var lastResizeTimeout = null
+          function resizeMarmoset() {
+            var width = 800;
+            var height = 600;
+
+            if (lastResizeTimeout) {
+              clearTimeout(lastResizeTimeout)
+            }
+            lastResizeTimeout = setTimeout(function(){
+              currentViewer.resize(width, height); }, 100
+            );
+          }
+          window.addEventListener('resize', resizeMarmoset);
+        }
+    </script>
+</div>
+{% endif %}
+<div class="description">
+    <h4>Описание</h4>
+    <hr>
+    <p>
+        {{ model.description}}
+    </p>
+</div>
+<script language="javascript">
+    document.addEventListener('click', function (e){
+        if (e.target.classList.contains('c_item')) {
+            let image = document.getElementById("main_img");
+            let active = document.getElementById("act");
+            image.src = e.target.src;
+            active.removeAttribute('id');
+            e.target.setAttribute('id','act')
+        }
+    });
+</script>
+{% else %}
+<div class="center top">
+    <h3>Модель не прошла модерацию</h3>
+</div>
+{% endif %}
+{% endblock %}

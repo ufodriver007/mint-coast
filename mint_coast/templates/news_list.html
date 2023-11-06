@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="top center">
+    <h1>Новости</h1>
+</div>
+{% for news_item in news %}
+    <div class="news_list_item">
+        <img src="/media/{{ news_item.image }}">
+        <div>
+        <h2>{{ news_item.title }}</h2>
+        <p><b>{{ news_item.short_description }}</b></p>
+        <p><a href="/news/{{ news_item.id }}">Читать далее>>></a></p>
+        </div>
+    </div>
+    <hr>
+{% endfor %}
+{% endblock %}

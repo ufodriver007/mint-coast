@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="top">
+    <div class="center">
+        <h3>Создание тикета в тех. поддержку</h3>
+    </div>
+</div>
+<div class="center">
+    {% if success == 'success' %}
+    <div><h3>Тикет отправлен.</h3></div>
+    {% elif success == 'false' %}
+    <div><h3>Не удалось отправить тикет</h3></div>
+    {% else %}
+    <div class="reg_info">
+        <form action="" method="post" class="login-form">
+            {% csrf_token %}
+            <table border="1">
+                {{ form }}
+            </table>
+            <input type="hidden" name="user" value="{{ u_id }}">
+            <button type="submit">Отправить тикет</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

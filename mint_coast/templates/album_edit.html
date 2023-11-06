@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static recaptcha3 %}
+{% recaptcha_init %}
+{% recaptcha_ready action_name='homepage' %}
+<div class="top">
+    <div class="center">
+        <h3>Изменение альбома</h3>
+    </div>
+</div>
+
+<div class="center">
+    {% if success == 'success' %}
+    <div><h3>Альбом успешно отредактирован</h3></div>
+    <a href="/album/{{ album.id }}">Назад в альбом</a>
+    {% elif success == 'false' %}
+    <div><h3>Не удалось отредактировать альбом</h3></div>
+    <a href="/album/{{ album.id }}">Назад в альбом</a>
+    {% else %}
+    <div class="reg_info">
+         <form action="" method="post" class="login-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+
+    </div>
+    <div class="reg_info">
+        <form action="/album/delete/" method="post" class="del-form">
+            {% csrf_token %}
+            <button id="submitBtn" type="submit" >УДАЛИТЬ альбом</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+<script>
+  document.getElementById('submitBtn').addEventListener('click', function(event) {
+    event.preventDefault(); // Предотвращаем отправку формы по умолчанию
+
+    // Показываем всплывающее окно подтверждения
+    if (confirm('Вы ТОЧНО уверены, что хотите удалить свой альбом?')) {
+      // Если пользователь нажал "ОК", находим элемент с классом del-form и делаем submit
+      document.querySelector('.del-form').submit();
+    }
+  });
+</script>
+{% endblock %}

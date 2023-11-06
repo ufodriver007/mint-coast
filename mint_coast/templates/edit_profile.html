@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="top">
+    <div class="center">
+        <h3>Изменение данных профиля</h3>
+    </div>
+</div>
+<div class="center">
+    {% if success == 'success' %}
+    <div><h3>Данные профиля обновлены</h3></div>
+    <div><a href="/accounts/profile/">Назад в профиль</a></div>
+    {% elif success == 'false' %}
+    <div><h3>Не удалось обновить профиль</h3></div>
+    <div><a href="/accounts/profile/">Назад в профиль</a></div>
+    {% else %}
+    <div class="reg_info">
+        <form action="" method="post" class="login-form">
+            {% csrf_token %}
+            <label for="first_name">Имя</label><br>
+            <input type="text" value="{{ request.user.first_name }}" name="first_name"><br>
+            <label for="last_name">Фамилия</label><br>
+            <input type="text" value="{{ request.user.last_name }}" name="last_name"><br>
+            <label for="username">Ник</label><br>
+            <input type="text" value="{{ request.user.username }}" name="username"><br>
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
