@@ -141,11 +141,11 @@ class SearchView(View):
             query = ''
 
         category = request.GET.get('category')
-        if category == '11' or category == '':
+        if category == 'all' or category == '':
             category = ''
-            category_name = Category.objects.get(id=11)
+            category_name = Category.objects.get(path='all').name
         else:
-            category_name = Category.objects.get(id=category)
+            category_name = Category.objects.get(path=category).name
 
         page = request.GET.get('page')
         if not page:
@@ -159,9 +159,9 @@ class SearchView(View):
         tags = request.GET.get('tags')
 
         if category and query != '':
-            models = MModel.objects.annotate(lower_name=Lower('name')).filter(lower_name__icontains=query, category_id=category)
+            models = MModel.objects.annotate(lower_name=Lower('name')).filter(lower_name__icontains=query, category__path=category)
         elif category:
-            models = MModel.objects.filter(category_id=category)
+            models = MModel.objects.filter(category__path=category)
         else:
             models = MModel.objects.annotate(lower_name=Lower('name')).filter(lower_name__icontains=query)
 
