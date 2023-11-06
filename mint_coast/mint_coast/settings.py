@@ -30,6 +30,7 @@ SOCIALACCOUNT_GOOGLE_SECRET_KEY = os.getenv('SOCIALACCOUNT_GOOGLE_SECRET_KEY')
 MY_RECAPTCHA_PUBLIC_KEY = os.getenv('MY_RECAPTCHA_PUBLIC_KEY')
 MY_RECAPTCHA_PRIVATE_KEY = os.getenv('MY_RECAPTCHA_PRIVATE_KEY')
 MY_DEFAULT_FROM_EMAIL = os.getenv('MY_DEFAULT_FROM_EMAIL')
+MY_STATIC_ROOT = os.getenv('MY_STATIC_ROOT')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -163,10 +164,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 STATIC_URL = '/static/'
 
