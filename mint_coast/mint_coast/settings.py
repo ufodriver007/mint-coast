@@ -54,7 +54,7 @@ EMAIL_HOST_USER = MAILRU_HOST_USER
 EMAIL_HOST_PASSWORD = MAILRU_HOST_PASSWORD
 DEFAULT_FROM_EMAIL = MY_DEFAULT_FROM_EMAIL
 
-ALLOWED_HOSTS = ['mint-coast.ru', '89.23.110.30', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['mint-coast.ru', 'www.mint-coast.ru', '89.23.110.30', 'localhost', '127.0.0.1']
 
 
 # Application definition
