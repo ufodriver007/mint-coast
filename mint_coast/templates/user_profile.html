@@ -25,6 +25,13 @@
          </div>
     {% endif %}
 </div>
+{% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 {% if albums_and_previews %}
 <div class="center">
     <h3>Мои альбомы</h3>

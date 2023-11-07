@@ -1,4 +1,5 @@
 """Controller"""
+import zipfile
 import shutil
 import re
 import hashlib
@@ -17,6 +18,8 @@ from django.core.mail import send_mail
 from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
 from allauth.account.utils import send_email_confirmation
 from django.contrib import messages
+from django.conf import settings
+import os
 from django.utils import timezone
 from rest_framework.viewsets import ModelViewSet
 from .serializers import CategorySerializer, BanSerializer, UserSerializer
@@ -25,7 +28,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from datetime import datetime, timedelta
 from pytz import timezone
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse
 from django.utils import timezone as tmzone
 from django.forms.models import model_to_dict
 from .services import ban_user, unban_user, validate_user
@@ -424,3 +427,49 @@ class NewsDetailView(View):
     def get(self, request, n_id):
         news = get_object_or_404(News, id=n_id)
         return render(request, 'news_detail.html', {'news': news})
+
+
+class ModelSaleView(View):
+    def get(self, request, model_id):
+        model = get_object_or_404(MModel, id=model_id)
+        if request.user.is_authenticated:
+            return render(request, 'sale.html', {'model': model})
+        else:
+            messages.warning(request, 'Для покупки/скачивания нужно залогиниться')
+            return redirect('login')
+
+
+class ModelDownloadingView(View):
+    @staticmethod
+    def download_file(model):
+        # Путь к файлу, который нужно скачать
+        mesh_path = os.path.join(settings.MEDIA_ROOT, str(model.mesh))
+        textures_path = ''
+        if model.textures:
+            textures_path = os.path.join(settings.MEDIA_ROOT, str(model.textures))
+
+        z = zipfile.ZipFile(f'{model.name}.zip', 'w')     # Создание нового архива
+        z.write(mesh_path, os.path.basename(mesh_path))             # относительные пути, т.е. добавляются сами файлы без каталогов
+        if textures_path:
+            z.write(textures_path, os.path.basename(textures_path))
+        z.close()
+
+        # Открываем файл для чтения в бинарном режиме
+        with open(f'{model.name}.zip', 'rb') as file:
+            response = HttpResponse(file.read(), content_type='application/octet-stream')
+
+            # Устанавливаем заголовок для указания имени файла
+            response['Content-Disposition'] = f'attachment; filename="your_model.zip"'   # str(model.mesh).split("/")[-1]
+
+            os.remove(f'{model.name}.zip')
+
+            return response
+
+    def post(self, request, model_id, *args, **kwargs):
+        # здесь должна быть проверка куплена ли модель/владеет ли пользователь моделью
+        model = MModel.objects.get(id=model_id)
+        if model.user != request.user:
+            return ModelDownloadingView.download_file(model)
+        else:
+            messages.info(request, "Вы не можете скачать эту модель.")
+            return redirect('profile')

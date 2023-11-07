@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% load recaptcha3 %}
+{% recaptcha_init %}
+{% recaptcha_ready action_name='login' %}
+{% if model.is_hidden == False %}
+<div class="center">
+    <div class="top">
+        <h3>Вы покупаете {{ model.name }}</h3>
+    </div>
+</div>
+<div class="center">
+    <p>Стоимость модели: {{ model.price }} рублей</p>
+</div>
+<div class="downloading">
+    <form action="/model/{{ model.id }}/downloading/" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Скачать">
+    </form>
+</div>
+{% else %}
+<div class="center top">
+    <h3>Модель не прошла модерацию</h3>
+</div>
+{% endif %}
+{% endblock %}
