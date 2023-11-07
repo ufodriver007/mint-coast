@@ -11,7 +11,7 @@
 <header class="header">
     <a href="/" id="homeref" class="active">Главная</a>
     <div class="dropdown">
-        <a href="/search/?category=11&query=" id="categoryref">Модели</a>
+        <a href="/search/?category=all&query=" id="categoryref">Модели</a>
         <div class="dropdown-content">
             {% for category in categories %}
                 <a href="/search?category={{ category.path }}&query={{ query }}">{{ category.name }}</a>

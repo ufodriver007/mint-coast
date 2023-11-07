@@ -44,6 +44,13 @@
                         VK
                     </button>
                 </form>
+                <form method="post" action="{% provider_login_url 'google' %}">
+                    {% csrf_token %}
+                    <button type="submit" id="image-button-google">
+                        <img src="{% static 'img/google_logo.png' %}" class="pull-left">
+                        Google
+                    </button>
+                </form>
             </div>
         {% endif %}
     </div>
