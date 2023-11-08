@@ -128,11 +128,12 @@ body {
 }
 
 .categories {
+    text-align: center;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 20px;
-    padding-inline: 300px;
+    padding-inline: auto;
 }
 
 .last_models {

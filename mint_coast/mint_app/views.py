@@ -357,19 +357,21 @@ class AddNewAlbumView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             models = MModel.objects.filter(user=request.user)
-            return render(request, 'create_album.html', {'models': models})
+            form = AlbumForm(user=request.user)
+
+            return render(request, 'create_album.html', {'form': form, 'models': models})
         return redirect('home')
 
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated and request.user.emailaddress_set.filter(primary=True, verified=True).exists():
-            name = request.POST.get("name")
-            if len(name) > 3:
-                album = Album.objects.create(name=name, user=request.user)
-                album.save()
+            user = request.user
 
-                for m in request.POST.getlist('models'):
-                    if m:
-                        album.model.add(MModel.objects.get(id=m))
+            form = AlbumForm(user, request.POST)
+            if form.is_valid():
+                album = form.save(commit=False)
+                album.user = user
+                album.save()  # СОХРАНЕНИЕ ЭКЗЕМПЛЯРА ФОРМЫ
+                form.save_m2m()  # сохранение связей ManyToManyField
 
                 return render(request, 'create_album.html', {'success': 'success'})
 

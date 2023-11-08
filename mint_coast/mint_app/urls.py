@@ -21,7 +21,7 @@ from django.urls import path, include
 from .views import IndexView, MyLoginView, LogoutView, UserProfileView, UserProfileEditView, SearchView, ModelView, ModelEditView, AddNewModelView, CreateTicketView, ClosedTicketsView, ModelDeleteView, BannedUserView, BanUserView, UnBanUserView, AddNewAlbumView, AlbumView, AlbumDelete, AlbumEditView, NewsListView, NewsDetailView, ModelSaleView, ModelDownloadingView
 from rest_framework.routers import SimpleRouter
 from .views import CategoryViewSet, BanViewSet, UserViewSet
-from allauth.account.views import SignupView, ConfirmEmailView, LoginView
+from allauth.account.views import SignupView, ConfirmEmailView, LoginView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetFromKeyView, PasswordResetFromKeyDoneView
 from .forms import MySignUpForm
 
 
@@ -58,6 +58,11 @@ urlpatterns = [
     path('model/delete/', ModelDeleteView.as_view()),
     path('model/edit/<int:model_id>', ModelEditView.as_view()),
     path('user_profile/edit/', UserProfileEditView.as_view()),
+    path('accounts/password/change/', PasswordChangeView.as_view(template_name='change_password.html')),
+    path('accounts/password/reset/', PasswordResetView.as_view(template_name='reset_password.html')),
+    path('accounts/password/reset/done/', PasswordResetDoneView.as_view(template_name='reset_password_done.html')),
+    path('accounts/password/reset/key/<int:uidb36>-<str:key>/', PasswordResetFromKeyView.as_view(template_name='password_reset_from_key.html')),
+    path('accounts/password/reset/key/done/', PasswordResetFromKeyDoneView.as_view(template_name='password_reset_from_key_done.html')),
     path('accounts/signup/', SignupView.as_view(template_name='registration.html', form_class=MySignUpForm), name='account_signup'),
     path('accounts/login/', MyLoginView.as_view(), name='login'),
     path('accounts/profile/', UserProfileView.as_view(), name='profile'),

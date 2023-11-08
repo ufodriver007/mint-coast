@@ -2,7 +2,9 @@
 
 
 {% block content %}
-{% load static %}
+{% load static recaptcha3 %}
+{% recaptcha_init %}
+{% recaptcha_ready action_name='homepage' %}
 <div class="top">
     <div class="center">
         <h3>Создание нового альбома</h3>
@@ -23,16 +25,17 @@
         <div><h3>У Вас нет моделей для создания альбома</h3></div>
     {% else %}
     <div class="reg_info">
-        <form action="" method="post" class="login-form" enctype="multipart/form-data">
+        <form action="" method="post" class="login-form">
             {% csrf_token %}
-                <label for="name">Название(не меньше 4х символов)</label><br>
-                <input id="name" type="text" name="name" placeholder="Название альбома" required><br>
-                <label for="models">Модели для альбома</label><br>
-                <select id="models" size="10" name="models" multiple required>
-                    {% for model in models %}
-                        <option value="{{ model.id }}">{{ model.name }}</option>
-                    {% endfor %}
-                </select><br><br>
+            {{ form.as_p }}
+<!--                <label for="name">Название(не меньше 4х символов)</label><br>-->
+<!--                <input id="name" type="text" name="name" placeholder="Название альбома" required><br>-->
+<!--                <label for="models">Модели для альбома</label><br>-->
+<!--                <select id="models" size="10" name="models" multiple required>-->
+<!--                    {% for model in models %}-->
+<!--                        <option value="{{ model.id }}">{{ model.name }}</option>-->
+<!--                    {% endfor %}-->
+<!--                </select><br><br>-->
             <button type="submit">Создать</button>
         </form>
     </div>
