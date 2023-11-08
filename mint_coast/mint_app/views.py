@@ -105,9 +105,11 @@ class UserProfileView(View):
             email_confimed = request.user.emailaddress_set.filter(primary=True, verified=True).exists()
 
             albums_and_previews = {}
-            for al in albums:
-                models = MModel.objects.filter(album=al)
-                albums_and_previews[al] = models[0].photo00
+            if albums:
+                for al in albums:
+                    album_models = MModel.objects.filter(album=al)
+                    if album_models:
+                        albums_and_previews[al] = album_models[0].photo00
 
             return render(request, 'user_profile.html', {'albums_and_previews': albums_and_previews, 'models': models, 'tickets': tickets, 'email_confirmed': email_confimed})
         else:
@@ -355,7 +357,6 @@ class AddNewAlbumView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             models = MModel.objects.filter(user=request.user)
-            print(models)
             return render(request, 'create_album.html', {'models': models})
         return redirect('home')
 

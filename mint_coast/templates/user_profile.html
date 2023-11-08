@@ -31,7 +31,7 @@
             <li>{{ message }}</li>
         {% endfor %}
         </ul>
-    {% endif %}
+{% endif %}
 {% if albums_and_previews %}
 <div class="center">
     <h3>Мои альбомы</h3>
@@ -49,7 +49,6 @@
         <h3>Мои модели</h3>
     </div>
 <div class="my_models">
-
     {% for model in models %}
     {% if model.is_hidden == False %}
     <div class="models_item">
