@@ -17,7 +17,7 @@
 <div class="downloading">
     <form action="/model/{{ model.id }}/downloading/" method="post">
         {% csrf_token %}
-        <input type="submit" value="Скачать">
+        <button class="submitBtn" type="submit">Скачать</button>
     </form>
 </div>
 {% else %}

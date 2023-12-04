@@ -23,3 +23,9 @@ class UserSerializer(ModelSerializer):
 
     def get_models_count(self, instance):
         return MModel.objects.filter(user=instance).count()
+
+
+class MModelSerializer(ModelSerializer):
+    class Meta:
+        model = MModel
+        fields = '__all__'

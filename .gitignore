@@ -2,3 +2,5 @@
 venv/
 .env
 mint_coast/media/
+mint_coast/mint_app/migrations/
+mint_coast/mint_app/tests/

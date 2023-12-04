@@ -314,6 +314,17 @@ body {
   opacity:1;
 }
 
+.submitBtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 10%;
+  opacity: 0.9;
+}
+
 .email_confirm {
     color: #FF0000;
     margin-bottom: 50px;

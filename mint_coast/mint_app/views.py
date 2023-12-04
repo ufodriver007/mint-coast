@@ -22,7 +22,7 @@ from django.conf import settings
 import os
 from django.utils import timezone
 from rest_framework.viewsets import ModelViewSet
-from .serializers import CategorySerializer, BanSerializer, UserSerializer
+from .serializers import CategorySerializer, BanSerializer, UserSerializer, MModelSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
@@ -32,6 +32,7 @@ from django.http import HttpResponseForbidden, HttpResponse
 from django.utils import timezone as tmzone
 from django.forms.models import model_to_dict
 from .services import ban_user, unban_user, validate_user
+from allauth.socialaccount.models import SocialAccount
 
 
 class CategoryViewSet(ModelViewSet):
@@ -58,6 +59,11 @@ class UserViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['username']
     permission_classes = [IsAdminUser]
+
+
+class MModelViewSet(ModelViewSet):
+    queryset = MModel.objects.all()
+    serializer_class = MModelSerializer
 
 
 class IndexView(View):
@@ -103,6 +109,7 @@ class UserProfileView(View):
             tickets = Ticket.objects.filter(user_id=request.user.id).exclude(is_open=True)
 
             email_confimed = request.user.emailaddress_set.filter(primary=True, verified=True).exists()
+            is_social_acc = SocialAccount.objects.filter(user=request.user).exists()
 
             albums_and_previews = {}
             if albums:
@@ -111,7 +118,7 @@ class UserProfileView(View):
                     if album_models:
                         albums_and_previews[al] = album_models[0].photo00
 
-            return render(request, 'user_profile.html', {'albums_and_previews': albums_and_previews, 'models': models, 'tickets': tickets, 'email_confirmed': email_confimed})
+            return render(request, 'user_profile.html', {'albums_and_previews': albums_and_previews, 'models': models, 'tickets': tickets, 'email_confirmed': email_confimed, 'is_social_acc': is_social_acc})
         else:
             return redirect('home')
 

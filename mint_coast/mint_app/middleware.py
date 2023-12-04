@@ -39,7 +39,7 @@ class ThrottlingMiddleware:
         request_count = cache.get(cache_key, 0)
 
         # Проверка на превышение лимита запросов
-        if request_count >= 1000:  # Примерно 100 запросов в час
+        if request_count >= 1000:  # Примерно 1000 запросов в час
             return HttpResponseForbidden('Превышен лимит запросов')
 
         # Увеличиваем счетчик запросов и сохраняем его в кэше

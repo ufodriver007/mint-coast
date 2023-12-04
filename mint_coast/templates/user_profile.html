@@ -10,7 +10,9 @@
             <a href="/add_album/">Создать альбом</a>
             <a href="/add_model">Добавить модель</a>
             <a href="/user_profile/edit">Изменить данные профиля</a>
-            <a href="/accounts/password/change/">Изменить пароль</a>
+            {% if not is_social_acc %}
+                <a href="/accounts/password/change/">Изменить пароль</a>
+            {% endif %}
             <a href="/create_ticket">Написать в тех. поддержку</a>
             {% if tickets %}
                 <a href="/closed_tickets">Закрытые тикеты</a>
