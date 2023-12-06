@@ -51,5 +51,5 @@ class TicketAdmin(admin.ModelAdmin):
 @receiver(user_login_failed)
 def log_user_login_failed(sender, credentials, request, **kwargs):
     # Действия, которые нужно выполнить при неудачной попытке входа в админку
-    client_ip = request.META['REMOTE_ADDR']
+    client_ip = request.META.get('REMOTE_ADDR') or request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('HTTP_X_REAL_IP')
     admin_logger.warning(f"Неудачная попытка входа в админку c IP {client_ip}; username: {request.POST.get('username')}; password: {request.POST.get('password')}.")
