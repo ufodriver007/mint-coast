@@ -1,4 +1,5 @@
 """Controller"""
+import logging
 import zipfile
 import shutil
 import re
@@ -33,6 +34,9 @@ from django.utils import timezone as tmzone
 from django.forms.models import model_to_dict
 from .services import ban_user, unban_user, validate_user
 from allauth.socialaccount.models import SocialAccount
+
+
+logger = logging.getLogger("my_views")
 
 
 class CategoryViewSet(ModelViewSet):
@@ -258,6 +262,9 @@ class ModelEditView(View):
             model.save()
             return render(request, 'model_edit.html', {'success': 'success'})
 
+        model = MModel.objects.get(id=request.POST.get("model_id"))
+        errors = form.errors
+        logger.debug(f'Failed to edit. Model: {model.name}. Owner: {model.user} Errors: {errors}')
         return render(request, 'model_edit.html', {'success': 'false', 'form': form})
 
 
@@ -301,6 +308,17 @@ class AddNewModelView(View):
                 if tag:
                     # Добавляем новые связанные объекты ManyToMany
                     new_model.tags.add(Tag.objects.get(id=tag))
+
+            # Получаем количество МБ свободного пространства на диске
+            cmd = "df -m / | awk 'NR==2 {print $4}'"
+            output = int(os.popen(cmd).read())
+
+            # Если меньше 10 гигабайт, пишем warning
+            if output < 10000:
+                logger.warning(f'Free disk space is running out! {output} MB left!')
+            else:
+                logger.debug(f'Free space {output} MB')
+
             return render(request, 'adding_model.html', {'success': 'success'})
 
         return render(request, 'adding_model.html', {'success': 'false', 'form': form})

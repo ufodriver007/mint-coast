@@ -243,3 +243,29 @@ RECAPTCHA_PUBLIC_KEY = MY_RECAPTCHA_PUBLIC_KEY
 RECAPTCHA_PRIVATE_KEY = MY_RECAPTCHA_PRIVATE_KEY
 RECAPTCHA_DEFAULT_ACTION = "generic"
 RECAPTCHA_SCORE_THRESHOLD = 0.5
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "site_log.log"),
+            'formatter': 'simple',
+        },
+    },
+    "loggers": {
+        "my_views": {
+            "handlers": ["file"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "DEBUG"),
+            "propagate": False,
+        },
+    },
+    'formatters': {
+        'simple': {
+            'format': '{asctime} - {levelname} - {name} - {message}',
+            'style': '{'
+        }
+    },
+}

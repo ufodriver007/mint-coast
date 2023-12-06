@@ -3,6 +3,9 @@
 
 {% block content %}
 {% load static %}
+{% load recaptcha3 %}
+{% recaptcha_init %}
+{% recaptcha_ready action_name='homepage' %}
 <div class="top">
     <div class="center">
         <h3>Изменение модели</h3>
@@ -14,6 +17,9 @@
     <div><h3>Модель успешно отредактирована</h3></div>
     {% elif success == 'false' %}
     <div><h3>Не удалось отредактировать модель</h3></div>
+    <div>
+        {{ errors }}
+    </div>
     {% else %}
     <div class="reg_info">
         <form action="" method="post" class="login-form" enctype="multipart/form-data">
