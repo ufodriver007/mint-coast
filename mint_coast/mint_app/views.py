@@ -271,13 +271,6 @@ class ModelEditView(View):
 class ModelDeleteView(View):
     def post(self, request, *args, **kwargs):
         model = MModel.objects.get(id=request.POST.get("model_id"), user=request.user)
-
-        path = f"./media/{'/'.join(str(model.mesh).split('/')[:2])}"
-        try:
-            shutil.rmtree(path)
-        except FileNotFoundError:
-            pass
-
         model.delete()
 
         return redirect('profile')

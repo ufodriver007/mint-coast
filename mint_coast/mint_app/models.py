@@ -1,6 +1,9 @@
 from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
+import shutil
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 
 class Tag(models.Model):
@@ -72,7 +75,7 @@ class MModel(models.Model):
     photo04 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 5')
     photo05 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 6')
     description = models.TextField(default=None, blank=True, verbose_name='Описание')
-    is_hidden = models.BooleanField(default=False, blank=True, verbose_name='Скрыть модель')
+    is_hidden = models.BooleanField(default=False, blank=True, verbose_name='Скрытая модель')
     tags = models.ManyToManyField(Tag, verbose_name='Тэги')
 
     def __str__(self):
@@ -130,3 +133,12 @@ class News(models.Model):
     image = models.FileField(upload_to=f'./news/{get_time()}/', default=None, blank=True, verbose_name='Файл изображения')
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
+
+
+@receiver(pre_delete, sender=MModel)
+def delete_model_files(sender, instance, **kwargs):
+    path = f"./media/{'/'.join(str(instance.mesh).split('/')[:2])}"
+    try:
+        shutil.rmtree(path)
+    except FileNotFoundError:
+        pass
