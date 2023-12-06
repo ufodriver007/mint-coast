@@ -310,7 +310,7 @@ class AddNewModelView(View):
             if output < 10000:
                 logger.warning(f'Free disk space is running out! {output} MB left!')
             else:
-                logger.debug(f'Free space {output} MB')
+                logger.info(f'Free space {output} MB')
 
             return render(request, 'adding_model.html', {'success': 'success'})
 

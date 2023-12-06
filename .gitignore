@@ -5,3 +5,4 @@ mint_coast/media/
 mint_coast/mint_app/migrations/
 mint_coast/mint_app/tests/
 site_log.log
+site_access_log.log

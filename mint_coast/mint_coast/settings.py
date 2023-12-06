@@ -254,10 +254,21 @@ LOGGING = {
             "filename": os.path.join(BASE_DIR, "site_log.log"),
             'formatter': 'simple',
         },
+        "admin_file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "site_access_log.log"),
+            'formatter': 'simple',
+        },
     },
     "loggers": {
         "my_views": {
             "handlers": ["file"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "DEBUG"),
+            "propagate": False,
+        },
+        "admin": {
+            "handlers": ["admin_file"],
             "level": os.getenv("DJANGO_LOG_LEVEL", "DEBUG"),
             "propagate": False,
         },

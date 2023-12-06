@@ -4,7 +4,12 @@ from django.contrib.auth.admin import UserAdmin
 from .models import Category, MModel, Album, Ticket, Ban, Tag, News
 from datetime import datetime
 from django.utils.safestring import mark_safe
+from django.contrib.auth.signals import user_logged_in, user_login_failed
+from django.dispatch import receiver
+import logging
 
+
+admin_logger = logging.getLogger("admin")
 
 admin.site.register(Album)
 admin.site.register(Tag)
@@ -41,3 +46,10 @@ class TicketAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class TicketAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "path")
+
+
+@receiver(user_login_failed)
+def log_user_login_failed(sender, credentials, request, **kwargs):
+    # Действия, которые нужно выполнить при неудачной попытке входа в админку
+    client_ip = request.META['REMOTE_ADDR']
+    admin_logger.warning(f"Неудачная попытка входа в админку c IP {client_ip}; username: {request.POST.get('username')}; password: {request.POST.get('password')}.")

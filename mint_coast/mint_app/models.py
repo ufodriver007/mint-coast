@@ -136,7 +136,8 @@ class News(models.Model):
 
 
 @receiver(pre_delete, sender=MModel)
-def delete_model_files(sender, instance, **kwargs):
+def delete_model_files(sender, instance: MModel, **kwargs):
+    """Удаление директории с файлами модели"""
     path = f"./media/{'/'.join(str(instance.mesh).split('/')[:2])}"
     try:
         shutil.rmtree(path)
