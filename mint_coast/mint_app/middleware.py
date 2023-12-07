@@ -37,10 +37,10 @@ class ThrottlingMiddleware:
         # здесь используется IP-адрес, но это не самое надежное решение
         client_ip = request.META['REMOTE_ADDR']
 
-        if client_ip in settings.BLACKLIST:
-            logger.warning(f'Blacklist: {settings.BLACKLIST}')
-            logger.warning(f'Попытка доступа с blacklist ip({client_ip})')
-            return HttpResponseForbidden('Ваш IP заблокирован!')
+        # if client_ip in settings.BLACKLIST:
+        #     logger.warning(f'Blacklist: {settings.BLACKLIST}')
+        #     logger.warning(f'Попытка доступа с blacklist ip({client_ip})')
+        #     return HttpResponseForbidden('Ваш IP заблокирован!')
 
         # Устанавливаем ключ для кэша, используя IP-адрес и префикс
         cache_key = f'throttle_{client_ip}'
