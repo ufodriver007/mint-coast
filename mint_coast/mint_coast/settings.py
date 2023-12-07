@@ -277,6 +277,11 @@ LOGGING = {
             "level": os.getenv("DJANGO_LOG_LEVEL", "DEBUG"),
             "propagate": False,
         },
+        "my_middleware": {
+            "handlers": ["file"],
+            "level": os.getenv("WARNING"),
+            "propagate": False,
+        },
     },
     'formatters': {
         'simple': {

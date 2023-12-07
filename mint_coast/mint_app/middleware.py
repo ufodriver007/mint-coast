@@ -6,6 +6,10 @@ from pytz import timezone
 from django.contrib.auth import logout
 from django.core.cache import cache
 from django.conf import settings
+import logging
+
+
+logger = logging.getLogger("my_middleware")
 
 
 class BanMiddleware:
@@ -34,6 +38,8 @@ class ThrottlingMiddleware:
         client_ip = request.META['REMOTE_ADDR']
 
         if client_ip in settings.BLACKLIST:
+            logger.warning(f'Blacklist: {settings.BLACKLIST}')
+            logger.warning(f'Попытка доступа с blacklist ip({client_ip})')
             return HttpResponseForbidden('Ваш IP заблокирован!')
 
         # Устанавливаем ключ для кэша, используя IP-адрес и префикс
