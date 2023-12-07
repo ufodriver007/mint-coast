@@ -5,6 +5,7 @@ from datetime import datetime
 from pytz import timezone
 from django.contrib.auth import logout
 from django.core.cache import cache
+from django.conf import settings
 
 
 class BanMiddleware:
@@ -31,6 +32,9 @@ class ThrottlingMiddleware:
         # Получаем IP-адрес пользователя или другую уникальную строку для идентификации
         # здесь используется IP-адрес, но это не самое надежное решение
         client_ip = request.META['REMOTE_ADDR']
+
+        if client_ip in settings.BLACKLIST:
+            return HttpResponseForbidden('Ваш IP заблокирован!')
 
         # Устанавливаем ключ для кэша, используя IP-адрес и префикс
         cache_key = f'throttle_{client_ip}'
