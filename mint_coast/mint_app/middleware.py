@@ -35,7 +35,7 @@ class ThrottlingMiddleware:
     def __call__(self, request):
         # Получаем IP-адрес пользователя или другую уникальную строку для идентификации
         # здесь используется IP-адрес, но это не самое надежное решение
-        client_ip = request.META['REMOTE_ADDR']
+        client_ip = request.META.get('REMOTE_ADDR') or request.META.get('HTTP_X_FORWARDED_FOR') or request.META.get('HTTP_X_REAL_IP')
 
         if client_ip in settings.BLACKLIST:
             logger.warning(f'Попытка доступа с blacklist ip({client_ip})')

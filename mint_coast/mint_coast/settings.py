@@ -18,8 +18,6 @@ load_dotenv()
 
 
 BLACKLIST = {}
-BLACKLIST.clear()
-
 with open('blacklist.txt', 'r') as f:
     BLACKLIST = {item.strip(): '' for item in f}
 
