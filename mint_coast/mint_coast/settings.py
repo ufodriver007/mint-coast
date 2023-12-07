@@ -17,7 +17,7 @@ from pathlib import Path
 load_dotenv()
 
 
-with open('blacklist') as f:
+with open('blacklist.txt', 'r') as f:
     BLACKLIST = {item.strip(): '' for item in f}
 
 DB_NAME = os.getenv('DB_NAME')
