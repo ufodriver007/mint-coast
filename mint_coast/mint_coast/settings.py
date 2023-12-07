@@ -16,8 +16,6 @@ from pathlib import Path
 
 load_dotenv()
 
-
-BLACKLIST = {}
 with open('blacklist.txt', 'r') as f:
     BLACKLIST = {item.strip(): '' for item in f}
 
