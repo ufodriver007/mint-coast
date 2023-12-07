@@ -21,8 +21,15 @@
     {% elif success == 'false' %}
     <div><h3>Не удалось добавить модель</h3></div>
     {% else %}
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
     <div class="reg_info">
-        <p style="color: red;">Не более 50Мб!</p>
+        <p style="color: red;">Не более 200Мб!</p>
         <form action="" method="post" class="login-form" enctype="multipart/form-data">
             {% csrf_token %}
             <table border="1">

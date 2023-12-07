@@ -278,6 +278,10 @@ class ModelDeleteView(View):
 
 class AddNewModelView(View):
     def get(self, request, *args, **kwargs):
+        if os.getenv('ALLOW_USERS_UPLOADS') != 'TRUE':
+            messages.error(request, 'Загрузки запрещены администраторм')
+            return redirect('profile')
+
         if request.user.is_authenticated:
             if not request.user.emailaddress_set.filter(primary=True, verified=True).exists():
                 return render(request, 'adding_model.html', {'email_confirmed': 'False'})
@@ -287,6 +291,10 @@ class AddNewModelView(View):
             return redirect('home')
 
     def post(self, request, *args, **kwargs):
+        if os.getenv('ALLOW_USERS_UPLOADS') != 'TRUE':
+            messages.error(request, 'Загрузки запрещены администраторм')
+            return redirect('profile')
+
         form = MModelForm(request.POST, request.FILES)  # Получаем данные формы из запроса
         user = request.user
         if form.is_valid() and user.emailaddress_set.filter(primary=True, verified=True).exists():
