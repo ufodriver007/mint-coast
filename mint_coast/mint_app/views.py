@@ -34,6 +34,7 @@ from django.utils import timezone as tmzone
 from django.forms.models import model_to_dict
 from .services import ban_user, unban_user, validate_user
 from allauth.socialaccount.models import SocialAccount
+from django.core.paginator import Paginator
 
 
 logger = logging.getLogger("my_views")
@@ -175,15 +176,18 @@ class SearchView(View):
         tags = request.GET.get('tags')
 
         if category and query != '':
-            models = MModel.objects.annotate(lower_name=Lower('name')).filter(lower_name__icontains=query, category__path=category)
+            models = MModel.objects.annotate(lower_name=Lower('name')).filter(lower_name__icontains=query, category__path=category).order_by('loading_date')
         elif category:
-            models = MModel.objects.filter(category__path=category)
+            models = MModel.objects.filter(category__path=category).order_by('loading_date')
         else:
-            models = MModel.objects.annotate(lower_name=Lower('name')).filter(lower_name__icontains=query)
+            models = MModel.objects.annotate(lower_name=Lower('name')).filter(lower_name__icontains=query).order_by('loading_date')
 
-        last_page = len(models) // 20 + 1
-        pages = range(1, (len(models) // 20 + 1) + 1)
-        models = models[int(page)*20 - 20:int(page)*20]
+        # pagination
+        p = Paginator(models, 20)
+        models = p.get_page(page)               # все объекты страницы
+        pages = p.page_range                    # range из страниц
+        last_page = p.num_pages                 # количество страниц
+
         query_string = re.sub(r'&page=[^&]*', r'', urlencode(request.GET))
 
         return render(request, 'search.html', {'query': query, 'category': category, 'category_name': category_name, 'tags': tags, 'models': models, 'page': page, 'pages': pages, 'last_page': last_page, 'query_string': query_string})
