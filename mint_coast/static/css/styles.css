@@ -369,6 +369,7 @@ body {
     font-size: 24px;
     color: gray;
     margin: 50px;
+    margin-top: 10px;
 }
 
 .buy {
@@ -576,4 +577,65 @@ body {
 
 .downloading {
     text-align: center;
+}
+
+.cart {
+    position: relative;
+    margin: 50px;
+}
+
+.discount{
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #F1C40F;
+}
+
+.old_price{
+    margin: 50px;
+    margin-bottom: 10px;
+    color: gray;
+}
+
+.image-button {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background-image: url('../img/cart.png');
+  background-size: cover;
+}
+
+.image-button-trash {
+  width: 25px;
+  height: 25px;
+  border: none;
+  object-fit: cover;
+  background-image: url('../img/trash.png');
+  background-size: cover;
+}
+
+.total_price {
+    text-align: left !important;
+}
+
+.cart_grid {
+    display: grid;
+    grid-template-columns: 2fr 5fr 2fr;
+}
+table {width: 100%; text-align: center; border-bottom: 2px solid #dfdfdf; border-radius: 6px; border-collapse: separate; border-spacing: 0px;}
+table thead tr {color: #ffffff; font-weight: bold; background: #c83240;}
+table tr td {border-right: 1px solid #dfdfdf;}
+table tr td:last-child {border-right: 0px;}
+table tbody tr:nth-child(1n) {background: #f6f6f6;}
+table tbody tr:nth-child(2n) {background: #e6e6e6;}
+table tbody tr:hover {background: #ffe8e8; transition-duration: 0.6s;}
+
+.cart_quantity{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cart_quantity form{
+    padding-top: 20px;
 }

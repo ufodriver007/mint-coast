@@ -18,7 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from .views import IndexView, MyLoginView, LogoutView, UserProfileView, UserProfileEditView, SearchView, ModelView, ModelEditView, AddNewModelView, CreateTicketView, ClosedTicketsView, ModelDeleteView, BannedUserView, BanUserView, UnBanUserView, AddNewAlbumView, AlbumView, AlbumDelete, AlbumEditView, NewsListView, NewsDetailView, ModelSaleView, ModelDownloadingView
+from .views import IndexView, MyLoginView, LogoutView, UserProfileView, UserProfileEditView, SearchView, ModelView, ModelEditView, AddNewModelView, CreateTicketView, ClosedTicketsView, ModelDeleteView, BannedUserView, BanUserView, UnBanUserView, AddNewAlbumView, AlbumView, AlbumDelete, AlbumEditView, NewsListView, NewsDetailView, SaleView, ModelDownloadingView, OrdersView, OrderDeleteView
 from rest_framework.routers import SimpleRouter
 from .views import CategoryViewSet, BanViewSet, UserViewSet, MModelViewSet
 from allauth.account.views import SignupView, ConfirmEmailView, LoginView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetFromKeyView, PasswordResetFromKeyDoneView
@@ -34,7 +34,12 @@ router.register(r'models', MModelViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('model/<int:model_id>/sale/', ModelSaleView.as_view()),
+    path('sale/', SaleView.as_view()),
+
+    path('orders/', OrdersView.as_view(), name='orders'),
+    path('orders/delete/<int:order_id>/', OrderDeleteView.as_view()),
+
+    # path('model/<int:model_id>/sale/', ModelSaleView.as_view()),
     path('model/<int:model_id>/downloading/', ModelDownloadingView.as_view()),
 
     path('news/<int:n_id>/', NewsDetailView.as_view()),

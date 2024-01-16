@@ -15,6 +15,7 @@ class MModelForm(ModelForm):
                   'mesh',
                   'format',
                   'price',
+                  'for_sale',
                   'category',
                   'tags',
                   'mview',

@@ -1,23 +1,17 @@
 """Controller"""
 import logging
 import zipfile
-import shutil
 import re
-import hashlib
-import random
 from urllib.parse import urlencode
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
-from django.contrib.auth.backends import ModelBackend
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from .forms import MModelForm, TicketForm, UserRegForm, UserForm, AlbumForm
 from .models import Category, MModel, Ticket, Ban, Tag, Album, News
+from cart.models import Order, Cart
 from django.db.models.functions import Lower
-from django.core.mail import send_mail
-from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
-from allauth.account.utils import send_email_confirmation
 from django.contrib import messages
 from django.conf import settings
 import os
@@ -30,11 +24,11 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from datetime import datetime, timedelta
 from pytz import timezone
 from django.http import HttpResponseForbidden, HttpResponse
-from django.utils import timezone as tmzone
 from django.forms.models import model_to_dict
 from .services import ban_user, unban_user, validate_user
 from allauth.socialaccount.models import SocialAccount
 from django.core.paginator import Paginator
+import decimal
 
 
 logger = logging.getLogger("my_views")
@@ -164,14 +158,11 @@ class SearchView(View):
         else:
             category_name = Category.objects.get(path=category).name
 
-        page = request.GET.get('page')
-        if not page:
+        page = request.GET.get('page', 1)
+        try:
+            page = int(page)
+        except ValueError:
             page = 1
-        else:
-            try:
-                page = int(page)
-            except ValueError:
-                page = 1
 
         tags = request.GET.get('tags')
 
@@ -232,6 +223,7 @@ class ModelEditView(View):
             model.mesh = edited_model.mesh or model.mesh
             model.format = edited_model.format
             model.price = edited_model.price
+            model.for_sale = edited_model.for_sale
             model.category = edited_model.category
             model.mview = edited_model.mview or model.mview
             model.polygons = edited_model.polygons
@@ -462,11 +454,28 @@ class NewsDetailView(View):
         return render(request, 'news_detail.html', {'news': news})
 
 
-class ModelSaleView(View):
-    def get(self, request, model_id):
-        model = get_object_or_404(MModel, id=model_id)
+class SaleView(View):
+    def get(self, request, *args, **kwargs):
+        if request.GET:
+            ids = [k for k, v in request.GET.items()]
+
+            order = Order.objects.create(user=request.user)
+            price = decimal.Decimal("0.00")
+            carts = []
+            for i in ids:
+                cart = Cart.objects.get(id=i)
+                cart.order = order
+                cart.save()
+                price += cart.products_price()
+                carts.append(cart)
+
+            order.price = price
+            order.save()
+        else:
+            return redirect('cart')
+
         if request.user.is_authenticated:
-            return render(request, 'sale.html', {'model': model})
+            return render(request, 'sale.html', {'order': order, 'carts': carts})
         else:
             messages.warning(request, 'Для покупки/скачивания нужно залогиниться')
             return redirect('login')
@@ -501,8 +510,19 @@ class ModelDownloadingView(View):
     def post(self, request, model_id, *args, **kwargs):
         # здесь должна быть проверка куплена ли модель/владеет ли пользователь моделью
         model = MModel.objects.get(id=model_id)
-        if model.user != request.user:
-            return ModelDownloadingView.download_file(model)
-        else:
-            messages.info(request, "Вы не можете скачать эту модель.")
-            return redirect('profile')
+
+        return ModelDownloadingView.download_file(model)
+
+
+class OrdersView(View):
+    def get(self, request, *args, **kwargs):
+        orders = Order.objects.filter(user=request.user)
+        return render(request, 'orders.html', context={'orders': orders})
+
+
+class OrderDeleteView(View):
+    def post(self, request, order_id, *args, **kwargs):
+        order = Order.objects.get(id=order_id)
+        order.delete()
+
+        return redirect('orders')

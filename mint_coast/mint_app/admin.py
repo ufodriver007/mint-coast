@@ -37,14 +37,15 @@ class MModelAdmin(admin.ModelAdmin):
 
 
 @admin.register(News)
-class TicketAdmin(admin.ModelAdmin):
+class NewsAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"description": ("short_description",)}
     list_display = ("title", "short_description", "description", "posted_by", "date")
     search_fields = ["title", "description"]
     list_filter = ("posted_by", "date")
 
 
 @admin.register(Category)
-class TicketAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "path")
 
 

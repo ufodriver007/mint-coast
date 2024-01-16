@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="center">
+    <div class="top">
+        <h3>Иои заказы</h3>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if orders %}
+        <div class="cart_grid">
+            <div></div>
+            <div class="cart_table">
+                <table>
+                    <tr>
+                        <th>
+                            Сумма
+                        </th>
+                        <th>
+                            Оплачен
+                        </th>
+                        <th>
+                            Дата
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                    {% for order in orders %}
+                    <tr>
+                        <td>
+                            <h4>{{ order.price }}</h4>
+                        </td>
+                        <td>
+                            <h4>{{ order.is_paid }}</h4>
+                        </td>
+                        <td>
+                            <h4>{{ order.created_timestamp }}</h4>
+                        </td>
+                        <td>
+                            <form method="post" action="/orders/delete/{{ order.id }}/">
+                                {% csrf_token %}
+                                <button class="image-button-trash"></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div></div>
+            <div></div>
+        </div>
+        {% else %}
+        <div>
+            У Вас нет заказов
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -5,24 +5,46 @@
 {% load recaptcha3 %}
 {% recaptcha_init %}
 {% recaptcha_ready action_name='login' %}
-{% if model.is_hidden == False %}
+
+{% if order %}
 <div class="center">
     <div class="top">
-        <h3>Вы покупаете {{ model.name }}</h3>
+        <h3>Ваш заказ</h3>
+    </div>
+    <div>
+        <div class="cart_grid">
+            <div></div>
+        <table>
+            <tr>
+                <th>Товар</th>
+                <th>Количество</th>
+                <th>Стоимость</th>
+            </tr>
+            {% for cart in carts %}
+            <tr>
+                <td>{{ cart.product.name }}</td>
+                <td>{{ cart.quantity }}</td>
+                <td>{{ cart.products_price }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        </div>
+        <div><h4>Сумма: {{ order.price }}руб.</h4></div>
     </div>
 </div>
-<div class="center">
-    <p>Стоимость модели: {{ model.price }} рублей</p>
-</div>
+{% endif %}
 <div class="downloading">
-    <form action="/model/{{ model.id }}/downloading/" method="post">
+    <form action="" method="post">
         {% csrf_token %}
-        <button class="submitBtn" type="submit">Скачать</button>
+        <button class="submitBtn" type="submit">Оплатить</button>
     </form>
 </div>
-{% else %}
-<div class="center top">
-    <h3>Модель не прошла модерацию</h3>
-</div>
-{% endif %}
+
+<!--<div class="downloading">-->
+<!--    <form action="/model/{{ model.id }}/downloading/" method="post">-->
+<!--        {% csrf_token %}-->
+<!--        <button class="submitBtn" type="submit">Скачать</button>-->
+<!--    </form>-->
+<!--</div>-->
+
 {% endblock %}

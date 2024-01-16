@@ -8,6 +8,13 @@
     <div class="top">
         <h3>Информация о модели</h3>
     </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div class="model">
         <div class="model_photo">
             <img src="../media/{{ model.photo00 }}" alt="Model image" id="main_img">
@@ -52,14 +59,31 @@
             {% if model.tags %}
                 <p>Тэги: {% for tag in tags %}#{{ tag }} {% endfor %}</p>
             {% endif %}
+            {% if model.for_sale %}
             <div class="buy_it">
+                {% if model.discount %}
+                <div class="discount">
+                    <p><b>Скидка {{ model.discount }} %</b></p>
+                </div>
+                <div class="old_price">
+                    <p><del>{{ model.price }} руб</del></p>
+                </div>
+                {% endif %}
                 <div class="price">
-                    <p><b>{{ model.price }} руб</b></p>
+                    <p><b>{{ model.sell_price }} руб</b></p>
                 </div>
                 <div class="buy">
-                    <a href="/model/{{ model.id }}/sale/">Купить</a>
+                    <a href="/cart/{{ model.id }}/">Купить</a>
+                </div>
+                <div class="cart">
+                    <form method="post" action="/cart/add/{{ model.id }}/">
+                        {% csrf_token %}
+                        <button class="image-button"></button>
+                    </form>
+<!--                    <a href="/cart/add/{{ model.id }}"><img src="{% static 'img/cart.png' %}" width="50"></a>-->
                 </div>
             </div>
+            {% endif %}
         </div>
         <div class="carousel">
             <img src="../media/{{ model.photo00 }}" alt="carousel_image" class="c_item" id="act">

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div class="center">
+    <div class="top">
+        <h3>Корзина</h3>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if carts %}
+        <div class="cart_grid">
+            <div></div>
+            <div class="cart_table">
+                <table>
+                    <tr>
+                        <th>
+                            Товар
+                        </th>
+                        <th>
+                            Количество
+                        </th>
+                        <th>
+                            Цена за шт.
+                        </th>
+                        <th>
+                            Цена
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                    {% for cart in carts %}
+                    <tr>
+                        <td>
+                            <h4>{{ cart.product }}</h4>
+                        </td>
+                        <td>
+                            <div class="cart_quantity">
+                                <form method="post" action="/cart/delete/item/{{ cart.product.id }}/">
+                                    {% csrf_token %}
+                                    <button type="submit">-</button>
+                                </form>
+                                <h4>{{ cart.quantity }} шт</h4>
+                                <form method="post" action="/cart/add/item/{{ cart.product.id }}/">
+                                    {% csrf_token %}
+                                    <button type="submit">+</button>
+                                </form>
+                            </div>
+                        </td>
+                        <td>
+                            <h4>{{ cart.product.sell_price }} руб</h4>
+                        </td>
+                        <td>
+                            <h4>{{ cart.products_price }} руб</h4>
+                        </td>
+                        <td>
+                            <form method="post" action="/cart/delete/{{ cart.product.id }}/">
+                                {% csrf_token %}
+                                <button class="image-button-trash"></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div></div>
+            <div></div>
+            <div class="total_price">
+                <h3>Общая стоимость: {{ total_price }} руб.</h3>
+            </div>
+        </div>
+        <div>
+            <div class="buy">
+                <a href="/sale?{{ get_parameters }}">Оформить заказ</a>
+            </div>
+        </div>
+        {% else %}
+        <div>
+            Ваша корзина пуста.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -71,8 +71,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django.contrib.postgres',
     'mint_app',
     'mint_coast',
+    'cart',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -81,6 +84,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'rest_framework',
     'snowpenguin.django.recaptcha3',
+    'debug_toolbar',
 ]
 
 
@@ -95,6 +99,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     'mint_app.middleware.BanMiddleware',
     'mint_app.middleware.ThrottlingMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'mint_coast.urls'
@@ -289,3 +294,7 @@ LOGGING = {
         }
     },
 }
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

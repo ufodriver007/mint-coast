@@ -51,7 +51,9 @@ class MModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # один-ко-многим
     mesh = models.FileField(upload_to=f'./models/{get_time()}/', default=None, blank=True, verbose_name='Файл модели')
     format = models.CharField(max_length=300, choices=FORMAT_CHOICES, blank=False, default=None, verbose_name='Формат файла')  # множеств. выбор
-    price = models.CharField(max_length=200, default='0', blank=True, verbose_name='Цена')
+    price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
+    discount = models.DecimalField(default=0.00, max_digits=4, decimal_places=2, verbose_name='Скидка в %')
+    for_sale = models.BooleanField(default=False, verbose_name='Для продажи')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')  # один-ко-многим
     mview = models.FileField(upload_to=f'./models/{get_time()}/', default=None, blank=True)
     polygons = models.CharField(max_length=200, default=None, blank=True, verbose_name='Количество полигонов')
@@ -76,7 +78,12 @@ class MModel(models.Model):
     photo05 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 6')
     description = models.TextField(default=None, blank=True, verbose_name='Описание')
     is_hidden = models.BooleanField(default=False, blank=True, verbose_name='Скрытая модель')
-    tags = models.ManyToManyField(Tag, verbose_name='Тэги')
+    tags = models.ManyToManyField(Tag, blank=True, null=True, verbose_name='Тэги')
+
+    def sell_price(self):
+        if self.discount:
+            return round(self.price - self.price / 100 * self.discount, 2)
+        return self.price
 
     def __str__(self):
         return f'{self.name}'

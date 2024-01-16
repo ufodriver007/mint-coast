@@ -17,7 +17,7 @@ class BanMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.path == '/logout/':
+        if request.path == '/logout/' or request.path == '/logout':
             logout(request)
         if request.user.is_authenticated:
             if Ban.objects.filter(user=request.user.id).exists():
