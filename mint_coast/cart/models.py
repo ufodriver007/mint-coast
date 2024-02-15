@@ -2,6 +2,16 @@ from django.db import models
 from mint_app.models import User, MModel
 
 
+class CartQuerySet(models.QuerySet):
+    def total_price(self):
+        return sum([cart.products_price() for cart in self])
+
+    def total_quantity(self) -> int:
+        if self:
+            return sum([cart.quantity for cart in self])
+        return 0
+
+
 class Order(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name="Пользователь")
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Стоимость')
@@ -33,5 +43,4 @@ class Cart(models.Model):
         verbose_name = 'Корзина'
         verbose_name_plural = 'Корзины'
 
-
-
+    objects = CartQuerySet().as_manager()

@@ -56,7 +56,7 @@ class DeleteCart(View):
             product = MModel.objects.get(id=product_id)
             cart = Cart.objects.get(user=request.user, product=product)
             cart.delete()
-            messages.info(request, f'Из корзины удалён товар {product.name}')
+            messages.info(request, f'Из корзины удалён тип товара {product.name}')
 
             return redirect(request.META['HTTP_REFERER'])
 

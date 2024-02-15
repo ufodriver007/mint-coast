@@ -60,7 +60,7 @@ urlpatterns = [
     path('add_model/', AddNewModelView.as_view()),
     path('search/', SearchView.as_view()),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('model/<int:model_id>', ModelView.as_view()),
+    path('model/<int:model_id>', ModelView.as_view(), name='model_detail'),
     path('model/delete/', ModelDeleteView.as_view()),
     path('model/edit/<int:model_id>', ModelEditView.as_view()),
     path('user_profile/edit/', UserProfileEditView.as_view()),

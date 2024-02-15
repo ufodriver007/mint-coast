@@ -15,14 +15,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from .settings import DEBUG
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import MModelSitemap
+
+
+sitemaps = {
+    'mmodels': MModelSitemap
+}
 
 
 urlpatterns = [
     path('cart/', include('cart.urls')),
+    re_path(r'^robots\.txt$', TemplateView.as_view(template_name="mint_coast/robots.txt", content_type='text/plain')),
+    path('sitemap.xml/', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('', include('mint_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

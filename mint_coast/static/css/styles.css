@@ -599,9 +599,9 @@ body {
 .image-button {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  object-fit: fill;
   border: 1px solid gray;
-  border-radius: 10px;
+  border-radius: 5px;
   background-image: url('../img/cart.png');
   background-size: cover;
 }
@@ -610,7 +610,7 @@ body {
   width: 25px;
   height: 25px;
   border: none;
-  object-fit: cover;
+  object-fit: fill;
   background-image: url('../img/trash.png');
   background-size: cover;
 }

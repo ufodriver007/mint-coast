@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 import shutil
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
+from django.urls import reverse
 
 
 class Tag(models.Model):
@@ -78,7 +79,7 @@ class MModel(models.Model):
     photo05 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 6')
     description = models.TextField(default=None, blank=True, verbose_name='Описание')
     is_hidden = models.BooleanField(default=False, blank=True, verbose_name='Скрытая модель')
-    tags = models.ManyToManyField(Tag, blank=True, null=True, verbose_name='Тэги')
+    tags = models.ManyToManyField(Tag, blank=True, verbose_name='Тэги')
 
     def sell_price(self):
         if self.discount:
@@ -87,6 +88,9 @@ class MModel(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+    def get_absolute_url(self):
+        return reverse("model_detail", kwargs={"model_id": self.id})
 
     class Meta:
         verbose_name = 'Модель'

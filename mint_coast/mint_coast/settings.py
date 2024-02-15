@@ -63,6 +63,7 @@ ALLOWED_HOSTS = ['mint-coast.ru', 'www.mint-coast.ru', '89.23.110.30', 'localhos
 
 
 # Application definition
+SITE_ID = 1
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -73,6 +74,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django.contrib.postgres',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'mint_app',
     'mint_coast',
     'cart',

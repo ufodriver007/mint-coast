@@ -23,9 +23,10 @@
     </div>
 
     {% if not email_confirmed %}
-         <div class="email_confirm">
+         <div>
              <h4>Email не подтверждён. Функции аккаунта ограничены. На Вашу почту выслано письмо с инструкциями.</h4>
-             <a href="/accounts/email/">Управление E-mail адресами</a>
+<!--             <a href="/accounts/email/">Управление E-mail адресами</a>-->
+             <p><a href="/accounts/email/" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Управление E-mail адресами</a></p>
          </div>
     {% endif %}
 </div>
