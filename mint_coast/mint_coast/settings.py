@@ -19,9 +19,9 @@ load_dotenv()
 with open('blacklist.txt', 'r') as f:
     BLACKLIST = {item.strip(): '' for item in f}
 
-DB_NAME = os.getenv('DB_NAME')
-DB_USER = os.getenv('DB_USER')
-DB_PASS = os.getenv('DB_PASS')
+DB_NAME = os.getenv('POSTGRES_DB')
+DB_USER = os.getenv('POSTGRES_USER')
+DB_PASS = os.getenv('POSTGRES_PASSWORD')
 DJANGO_SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 MAILRU_HOST_USER = os.getenv('MAILRU_HOST_USER')
 MAILRU_HOST_PASSWORD = os.getenv('MAILRU_HOST_PASSWORD')
@@ -176,14 +176,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
 STATIC_URL = '/static/'
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+FIXTURE_DIRS = [
+    'fixtures',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

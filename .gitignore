@@ -10,4 +10,6 @@ blacklist.txt
 mint_coast/__pycache_/
 mint_coast/mint_coast/__pycache__/
 mint_coast/mint_app/__pycache__/
-
+mint_coast/Dockerfile
+nginx/
+mint_coast/recapcha_replace
