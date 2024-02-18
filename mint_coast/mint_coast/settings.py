@@ -16,8 +16,9 @@ from pathlib import Path
 
 load_dotenv()
 
-with open('blacklist.txt', 'r') as f:
-    BLACKLIST = {item.strip(): '' for item in f}
+if os.path.isfile('blacklist.txt'):
+    with open('blacklist.txt', 'r') as f:
+        BLACKLIST = {item.strip(): '' for item in f}
 
 DB_NAME = os.getenv('POSTGRES_DB')
 DB_USER = os.getenv('POSTGRES_USER')
