@@ -2,7 +2,6 @@
 venv/
 .env
 mint_coast/media/
-mint_coast/mint_app/migrations/
 mint_coast/mint_app/tests/
 mint_coast/site_log.log
 mint_coast/site_access_log.log
