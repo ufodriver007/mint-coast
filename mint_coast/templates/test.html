@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Тестовые данные</h1>
+    <input id="test_button" value="Получить тестовые данные" type="button" />
+    <p id="data"></p>
+    <script>
+        const button = document.getElementById('test_button');
+        button.addEventListener('click', async () => {
+            let response = await fetch('http://127.0.0.1:8000/categories/');
+
+            if (response.ok) {
+                let json_data = await response.json();
+                document.getElementById('data').textContent = json_data[0].name
+            } else {
+                alert("Ошибка HTTP: " + response.status);
+            }
+        });
+    </script>
+</body>
+</html>
