@@ -73,6 +73,11 @@ class IndexView(View):
         return render(request, 'index.html', {'models': models, 'news': news})
 
 
+class TestView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'test.html')
+
+
 class MyLoginView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:

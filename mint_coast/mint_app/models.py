@@ -5,6 +5,7 @@ import shutil
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.urls import reverse
+from hashlib import sha256
 
 
 class Tag(models.Model):
@@ -31,9 +32,13 @@ class Category(models.Model):
 
 
 class MModel(models.Model):
-    @staticmethod
-    def get_time():
-        return datetime.now().strftime('%m%d%y%H%M%S')
+    def get_dir(self, filename):
+        dir_name = sha256(f'{self.name}{self.user.username}'.encode('utf-8')).hexdigest()
+        return f"models/{dir_name}/{filename}"
+
+    def get_image_dir(self, filename):
+        dir_name = sha256(f'{self.name}{self.user.username}'.encode('utf-8')).hexdigest()
+        return f"models/{dir_name}/img/{filename}"
 
     FORMAT_CHOICES = (
         ('obj', 'obj'),          # 1 элемент - значение в базе, 2й - инфо для отображения в админке и т.д.
@@ -50,33 +55,33 @@ class MModel(models.Model):
     )
     name = models.CharField(max_length=200, verbose_name='Название')
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # один-ко-многим
-    mesh = models.FileField(upload_to=f'./models/{get_time()}/', default=None, blank=True, verbose_name='Файл модели')
+    mesh = models.FileField(upload_to=get_dir, default=None, blank=True, verbose_name='Файл модели')
     format = models.CharField(max_length=300, choices=FORMAT_CHOICES, blank=False, default=None, verbose_name='Формат файла')  # множеств. выбор
     price = models.DecimalField(default=0.00, max_digits=7, decimal_places=2, verbose_name='Цена')
     discount = models.DecimalField(default=0.00, max_digits=4, decimal_places=2, verbose_name='Скидка в %')
     for_sale = models.BooleanField(default=False, verbose_name='Для продажи')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')  # один-ко-многим
-    mview = models.FileField(upload_to=f'./models/{get_time()}/', default=None, blank=True)
+    mview = models.FileField(upload_to=get_dir, default=None, blank=True)
     polygons = models.CharField(max_length=200, default=None, blank=True, verbose_name='Количество полигонов')
     tris = models.CharField(max_length=200, default=None, blank=True, verbose_name='Количество треугольников')
     animate = models.BooleanField(default=False, verbose_name='Анимация')
-    textures = models.FileField(upload_to=f'./models/{get_time()}/textures/', default=None, blank=True, verbose_name='Архив с текстурами')
+    textures = models.FileField(upload_to=get_dir, default=None, blank=True, verbose_name='Архив с текстурами')
     is_pbr = models.BooleanField(default=False, verbose_name='PBR')
     is_unwrapped = models.BooleanField(default=False, verbose_name='Есть развёртка')
     is_low_poly = models.BooleanField(default=False, verbose_name='Лоу-поли модель')
     loading_date = models.DateTimeField(auto_now=True)
     is_scan = models.BooleanField(default=False, verbose_name='Скан')
     is_print = models.BooleanField(default=False, verbose_name='Для 3d печати')
-    video = models.FileField(upload_to=f'./models/{get_time()}/', default=None, blank=True, verbose_name='Файл с видео')
+    video = models.FileField(upload_to=get_dir, default=None, blank=True, verbose_name='Файл с видео')
     style = models.CharField(max_length=300, choices=STYLE_CHOICES, blank=False, default=None, verbose_name='Стиль')
     created_with = models.CharField(default=None, blank=True, verbose_name='Создано с помощью')
     rendered_with = models.CharField(default=None, blank=True, verbose_name='Программа для рендера')
-    photo00 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 1')
-    photo01 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 2')
-    photo02 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 3')
-    photo03 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 4')
-    photo04 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 5')
-    photo05 = models.FileField(upload_to=f'./models/{get_time()}/img/', default=None, blank=True, verbose_name='Фото 6')
+    photo00 = models.FileField(upload_to=get_image_dir, default=None, blank=True, verbose_name='Фото 1')
+    photo01 = models.FileField(upload_to=get_image_dir, default=None, blank=True, verbose_name='Фото 2')
+    photo02 = models.FileField(upload_to=get_image_dir, default=None, blank=True, verbose_name='Фото 3')
+    photo03 = models.FileField(upload_to=get_image_dir, default=None, blank=True, verbose_name='Фото 4')
+    photo04 = models.FileField(upload_to=get_image_dir, default=None, blank=True, verbose_name='Фото 5')
+    photo05 = models.FileField(upload_to=get_image_dir, default=None, blank=True, verbose_name='Фото 6')
     description = models.TextField(default=None, blank=True, verbose_name='Описание')
     is_hidden = models.BooleanField(default=False, blank=True, verbose_name='Скрытая модель')
     tags = models.ManyToManyField(Tag, blank=True, verbose_name='Тэги')

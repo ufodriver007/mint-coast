@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import IndexView, MyLoginView, LogoutView, UserProfileView, UserProfileEditView, SearchView, ModelView, ModelEditView, AddNewModelView, CreateTicketView, ClosedTicketsView, ModelDeleteView, BannedUserView, BanUserView, UnBanUserView, AddNewAlbumView, AlbumView, AlbumDelete, AlbumEditView, NewsListView, NewsDetailView, SaleView, ModelDownloadingView, OrdersView, OrderDeleteView
 from rest_framework.routers import SimpleRouter
-from .views import CategoryViewSet, BanViewSet, UserViewSet, MModelViewSet
+from .views import CategoryViewSet, BanViewSet, UserViewSet, MModelViewSet, TestView
 from allauth.account.views import SignupView, ConfirmEmailView, LoginView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetFromKeyView, PasswordResetFromKeyDoneView
 from .forms import MySignUpForm
 
@@ -73,6 +73,7 @@ urlpatterns = [
     path('accounts/login/', MyLoginView.as_view(), name='login'),
     path('accounts/profile/', UserProfileView.as_view(), name='profile'),
     path('accounts/', include('allauth.urls')),
+    path('test/', TestView.as_view()),
     path('', IndexView.as_view(), name='home'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += router.urls
